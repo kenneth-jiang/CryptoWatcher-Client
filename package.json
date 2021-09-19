@@ -2,7 +2,8 @@
   "name": "crypto-watcher",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "build": "webpack --config webpack.prod.js"
   },
   "dependencies": {
     "@babel/core": "^7.14.6",
