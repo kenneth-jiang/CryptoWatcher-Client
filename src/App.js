@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'; 
 // import crypto from 'crypto';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import NavBar from './components/NavBar';
 import Modal from './components/Modal';
 import NotFound from './components/NotFound';
@@ -53,7 +53,7 @@ export default () => {
     
     return (
         <BrowserRouter>
-            <Typography variant="subtitle2">
+            {/* <Typography variant="subtitle2"> */}
                 <NavBar 
                     navBarData={constants.navBarConstants}
                     loggedIn={loggedIn}
@@ -82,7 +82,7 @@ export default () => {
                     <Route exact path="/404" component={NotFound} />
                     <Redirect to="/404" />
                 </Switch>
-            </Typography>
+            {/* </Typography> */}
         </BrowserRouter>
     );
 };
