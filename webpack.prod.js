@@ -5,7 +5,6 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
     mode: 'production',
     output: {
-        path: path.join(__dirname, '/dist/'),
         filename: '[name].js',
         publicPath: '/'
     },
