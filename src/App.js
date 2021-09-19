@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'; 
-import crypto from 'crypto';
+// import crypto from 'crypto';
 import Typography from '@material-ui/core/Typography';
 import NavBar from './components/NavBar';
 import Modal from './components/Modal';
@@ -20,21 +20,21 @@ export default () => {
     const [ modalOpen, setModalOpen ] = useState(false);
 
     useEffect(() => {
-        let encryptedPassword = crypto.createHmac("sha256", process.env.PASSWORD).digest("hex");
-        if (window.sessionStorage.getItem("key") === encryptedPassword) {
-            return setLoggedIn(true);
-        }
+        // let encryptedPassword = crypto.createHmac("sha256", process.env.PASSWORD).digest("hex");
+        // if (window.sessionStorage.getItem("key") === encryptedPassword) {
+        //     return setLoggedIn(true);
+        // }
         return setLoggedIn(false);
     }, []);
 
     const handleLogin = (event, inputValue) => {
         event.preventDefault();
-        if (inputValue === process.env.PASSWORD) {
-            window.sessionStorage.setItem("key", crypto.createHmac("sha256", inputValue).digest("hex"));
-            setLoggedIn(true);
-            setLoginError(false);
-            return setModalOpen(false);
-        }
+        // if (inputValue === process.env.PASSWORD) {
+        //     window.sessionStorage.setItem("key", crypto.createHmac("sha256", inputValue).digest("hex"));
+        //     setLoggedIn(true);
+        //     setLoginError(false);
+        //     return setModalOpen(false);
+        // }
         return setLoginError(true);
     };
 
