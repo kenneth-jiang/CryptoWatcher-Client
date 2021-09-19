@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -29,5 +30,6 @@ module.exports = {
         }),
         new NodePolyfillPlugin(),
         new Dotenv(),
+        new MiniCssExtractPlugin({ filename: "bundle.min.css" }),
     ],
 };

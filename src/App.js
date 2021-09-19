@@ -20,21 +20,21 @@ export default () => {
     const [ modalOpen, setModalOpen ] = useState(false);
 
     useEffect(() => {
-        // let encryptedPassword = crypto.createHmac("sha256", process.env.PASSWORD).digest("hex");
-        // if (window.sessionStorage.getItem("key") === encryptedPassword) {
-        //     return setLoggedIn(true);
-        // }
+        let encryptedPassword = crypto.createHmac("sha256", process.env.PASSWORD).digest("hex");
+        if (window.sessionStorage.getItem("key") === encryptedPassword) {
+            return setLoggedIn(true);
+        }
         return setLoggedIn(false);
     }, []);
 
     const handleLogin = (event, inputValue) => {
         event.preventDefault();
-        // if (inputValue === process.env.PASSWORD) {
-        //     window.sessionStorage.setItem("key", crypto.createHmac("sha256", inputValue).digest("hex"));
-        //     setLoggedIn(true);
-        //     setLoginError(false);
-        //     return setModalOpen(false);
-        // }
+        if (inputValue === process.env.PASSWORD) {
+            window.sessionStorage.setItem("key", crypto.createHmac("sha256", inputValue).digest("hex"));
+            setLoggedIn(true);
+            setLoginError(false);
+            return setModalOpen(false);
+        }
         return setLoginError(true);
     };
 
