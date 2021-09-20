@@ -36,7 +36,7 @@ export const getCoinGeckoGlobalData = () => {
     return axios.get(baseUrl + "/api/v3/global");
 };
 
-export const getCoinGeckoHistoricalMarketData = (coin, interval = "daily", duration = "30") => {
+export const getCoinGeckoHistoricalMarketData = (coin, interval = "daily", duration = "max") => {
     if (useCacheData) {
         if (!!coinGeckoMarketChartData.coinGeckoMarketChartData[coin]) {
             return coinGeckoMarketChartData.coinGeckoMarketChartData[coin];
