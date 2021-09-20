@@ -6,9 +6,8 @@ const path = require('path');
 module.exports = {
     mode: 'production',
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,
+        filename: '[name].[contenthash].js',
+        publicPath: '/latest/',
     },
     module: {
         rules: [
