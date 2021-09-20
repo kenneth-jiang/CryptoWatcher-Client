@@ -7,7 +7,7 @@ module.exports = {
     mode: 'production',
     output: {
         filename: '[name].[contenthash].js',
-        publicPath: '/index.html/'
+        publicPath: '/index.html'
     },
     module: {
         rules: [

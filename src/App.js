@@ -39,7 +39,7 @@ export default () => {
     };
 
     const handleLogout = () => {
-        window.sessionStorage.removeItem("key");
+        // window.sessionStorage.removeItem("key");
         return setLoggedIn(false);
     };
 
