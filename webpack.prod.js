@@ -1,12 +1,14 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
+const path = require('path');
 
 module.exports = {
     mode: 'production',
     output: {
-        filename: '[name].js',
-        publicPath: '/'
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
     },
     module: {
         rules: [
