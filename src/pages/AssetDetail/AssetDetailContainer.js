@@ -10,7 +10,7 @@ import AssetDetailReturns from './AssetDetailReturns';
 import AssetDetailSummary from './AssetDetailSummary';
 import AssetDetailHistoricalData from './AssetDetailHistoricalData';
 import Loading from '../../components/Loading';
-import * as coinGeckoApi from '../../api/coinGeckoApi';
+import * as coinGeckoApi from '../../api/coingeckoApi';
 import * as binanceApi from '../../api/binanceApi';
 import * as constants from '../../utils/constants';
 
@@ -24,9 +24,9 @@ export default (props) => {
     useEffect(() => {
         async function getCoinGeckoAssetDetailGlobalDataHistoricalDataAndBinanceOHLC() {
             let assetDataObj = {};
-            let coinGeckoAssetDetailResponse = await coinGeckoApi.getCoinGeckoAssetDetail(props.match.params.name);
+            let coinGeckoAssetDetailResponse = await coinGeckoApi.getCoingeckoAssetDetail(props.match.params.name);
             assetDataObj = coinGeckoAssetDetailResponse.data;
-            let coinGeckoGlobalDataResponse = await coinGeckoApi.getCoinGeckoGlobalData();
+            let coinGeckoGlobalDataResponse = await coinGeckoApi.getCoingeckoGlobalData();
             assetDataObj.global = coinGeckoGlobalDataResponse.data.data;
             setAssetData(assetDataObj);
             let binanceOHLCResponse = await binanceApi.getBinanceOHLC(assetDataObj.symbol, "3m", 480);
@@ -47,7 +47,7 @@ export default (props) => {
             let assetDetailLineGraphOptionsCopy = {...constants.assetDetailLineGraphOptions};
             assetDetailLineGraphOptionsCopy.yaxis[0].min = parseFloat(assetMin) * .99;
             setOptions(assetDetailLineGraphOptionsCopy);
-            let coinGeckoHistoricalData = await coinGeckoApi.getCoinGeckoHistoricalMarketData(props.match.params.name);
+            let coinGeckoHistoricalData = await coinGeckoApi.getCoingeckoAssetHistoricalMarketData(props.match.params.name);
             let assetHistoricalData = [];
             coinGeckoHistoricalData.data.prices.map((interval) => {
                 assetHistoricalData.push({ date: interval[0], price: interval[1] });

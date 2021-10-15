@@ -38,10 +38,10 @@ export const greenOrRed = (num) => {
     if (!num) {
         return null;
     }
-    return num > 0 ? "green" : "red";
+    return num > 0 ? "#16C784" : "#EA3943";
 };
 
-export const modifyDate = (date) => {
+export const getMonthDayYearFromTimeStamp = (date) => {
     if (!date) {
         return "No Data";
     }

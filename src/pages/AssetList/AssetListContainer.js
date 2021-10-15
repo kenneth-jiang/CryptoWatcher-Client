@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import AssetListBanner from './AssetListBanner';
 import AssetListDataTable from './AssetListDataTable';
 import Loading from '../../components/Loading';
-import * as coinGeckoApi from '../../api/coinGeckoApi';
+import * as coinGeckoApi from '../../api/coingeckoApi';
 import * as helpers from '../../utils/helpers';
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
 
     useEffect(() => {
         async function getCoinGeckoAssetListGlobalData() {
-            let coinGeckoAssetListResponse = await coinGeckoApi.getCoinGeckoAssetList();
+            let coinGeckoAssetListResponse = await coinGeckoApi.getCoingeckoAssetList();
             let assetListDataArray = [];
             coinGeckoAssetListResponse.data.map((asset) => {
                 assetListDataArray.push({
@@ -31,7 +31,7 @@ export default () => {
                 });
             });
             setAssetListData(assetListDataArray);
-            let coinGeckoGlobalData = await coinGeckoApi.getCoinGeckoGlobalData();
+            let coinGeckoGlobalData = await coinGeckoApi.getCoingeckoGlobalData();
             setGlobalData(coinGeckoGlobalData.data.data);
         };
         getCoinGeckoAssetListGlobalData();

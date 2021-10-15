@@ -10,7 +10,7 @@ import ChartDetailTabGroup from './ChartDetailTabGroup';
 import ChartDetailAutoCompleteIntervalGroup from './ChartDetailAutoCompleteIntervalGroup';
 import ChartDetailIntervalData from './ChartDetailIntervalData';
 import Loading from '../../components/Loading';
-import * as coinGeckoApi from '../../api/coinGeckoApi';
+import * as coinGeckoApi from '../../api/coingeckoApi';
 import * as binanceApi from '../../api/binanceApi';
 import * as constants from '../../utils/constants';
 import * as helpers from '../../utils/helpers';
@@ -33,7 +33,7 @@ export default (props) => {
 
     useEffect(() => {
         async function getCoinGeckoAssetList() {
-            let coinGeckoAssetListResponse = await coinGeckoApi.getCoinGeckoAssetList();
+            let coinGeckoAssetListResponse = await coinGeckoApi.getCoingeckoAssetList();
             setAssetData(coinGeckoAssetListResponse.data);
             for (let asset of coinGeckoAssetListResponse.data) {
                 if (asset.id === props.match.params.name) {
@@ -68,7 +68,7 @@ export default (props) => {
             //         marketCap: [{ name: "Market Cap", type: "line", data: coinGeckoMarketCapArray }],
             //         volume: [{ name: "Volume", type: "bar", data: coinGeckoVolumeArray }],
             //     });
-            let coinGeckoHistoricalMarketData = await coinGeckoApi.getCoinGeckoHistoricalMarketData(selectedAsset.id, interval);
+            let coinGeckoHistoricalMarketData = await coinGeckoApi.getCoingeckoAssetHistoricalMarketData(selectedAsset.id, interval);
             let coinGeckoPriceArray = [];
             coinGeckoHistoricalMarketData.data.prices.map((day) => {
                 coinGeckoPriceArray.push({ x: day[0], y: day[1] });
@@ -124,7 +124,7 @@ export default (props) => {
 
     useEffect(() => {
         async function getSecondCoinGeckoHistoricalMarketData() {
-            let coinGeckoHistoricalMarketData = await coinGeckoApi.getCoinGeckoHistoricalMarketData(secondSelectedAsset.id, interval, secondSelectedDuration.value);
+            let coinGeckoHistoricalMarketData = await coinGeckoApi.getCoingeckoAssetHistoricalMarketData(secondSelectedAsset.id, interval);
             let coinGeckoPriceArray = [];
             coinGeckoHistoricalMarketData.data.prices.map((day) => {
                 coinGeckoPriceArray.push({ x: day[0], y: day[1] });
@@ -143,9 +143,9 @@ export default (props) => {
                 volume: [{ name: "Volume", type: "bar", data: coinGeckoVolumeArray }],
             }});
             setSecondDisplayData({
-                price: [{ name: "Price", type: "line", data: [...coinGeckoPriceArray].slice([...coinGeckoPriceArray].length - 1 - selectedDuration.value) }],
-                marketCap: [{ name: "Market Cap", type: "line", data: [...coinGeckoMarketCapArray].slice([...coinGeckoMarketCapArray].length - 1 - selectedDuration.value) }],
-                volume: [{ name: "Volume", type: "bar", data: [...coinGeckoVolumeArray].slice([...coinGeckoVolumeArray].length - 1 - selectedDuration.value) }],
+                price: [{ name: "Price", type: "line", data: [...coinGeckoPriceArray].slice([...coinGeckoPriceArray].length - 1 - secondSelectedDuration.value) }],
+                marketCap: [{ name: "Market Cap", type: "line", data: [...coinGeckoMarketCapArray].slice([...coinGeckoMarketCapArray].length - 1 - secondSelectedDuration.value) }],
+                volume: [{ name: "Volume", type: "bar", data: [...coinGeckoVolumeArray].slice([...coinGeckoVolumeArray].length - 1 - secondSelectedDuration.value) }],
             });
         };
         if (secondSelectedAsset && multiMode && (prevSecondSelectedAsset !== secondSelectedAsset)) {

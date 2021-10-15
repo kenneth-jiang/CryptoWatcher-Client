@@ -8,14 +8,48 @@ import Button from '@material-ui/core/Button';
 export default (props) => {
     let history = useHistory();
 
+    const navBarData = {
+        title: {
+            bold: "CRYPTO",
+            plain: "WATCHER",
+        },
+        links: [
+            {
+                name: "Coins",
+                to: "/coins",
+                authRequired: false,
+            },
+            {
+                name: "Assets",
+                to: "/assets",
+                authRequired: false,
+            },
+            {
+                name: "Chart",
+                to: "/chart",
+                authRequired: false,
+            },
+            {
+                name: "Live",
+                to: "/live",
+                authRequired: false,
+            },
+            {
+                name: "Order",
+                to: "/order",
+                authRequired: true,
+            }
+        ],
+    };
+
     return (
         <AppBar position="static">
             <Toolbar variant="dense">
                 <Typography variant="h6" style={{ cursor: "pointer" }} onClick={() => history.push("/")}>
-                    <strong>{props.navBarData.title.bold}</strong>{props.navBarData.title.plain}
+                    <strong>{navBarData.title.bold}</strong>{navBarData.title.plain}
                 </Typography>
                 <div style={{"width": "1%"}} />
-                {props.navBarData.links.map((link) => {
+                {navBarData.links.map((link) => {
                     if (props.loggedIn || !link.authRequired) {
                         return (
                             <Button color="inherit" key={link.name} component={Link} to={link.to}>

@@ -8,6 +8,11 @@ import Button from '@material-ui/core/Button';
 export default (props) => {
     const [ inputValue, setInputValue ] = useState("");
 
+    const handleSubmit = (event, inputValue) => {
+        event.preventDefault();
+        return props.handleLogin(inputValue);
+    };
+
     return (
         <Modal
             open={props.modalOpen}
@@ -25,7 +30,7 @@ export default (props) => {
             }}>
                 <CardContent>
                     <h2>Enter Password</h2>
-                    <form onSubmit={(event) => props.handleLogin(event, inputValue)}>
+                    <form onSubmit={(event) => handleSubmit(event, inputValue)}>
                         <TextField 
                             variant="outlined"
                             type="password"

@@ -1,34 +1,5 @@
 import * as helpers from './helpers';
 
-export const navBarConstants = {
-    title: {
-        bold: "CRYPTO",
-        plain: "WATCHER",
-    },
-    links: [
-        {
-            name: "Assets",
-            to: "/assets",
-            authRequired: false,
-        },
-        {
-            name: "Chart",
-            to: "/chart",
-            authRequired: false,
-        },
-        {
-            name: "Live",
-            to: "/live",
-            authRequired: false,
-        },
-        {
-            name: "Order",
-            to: "/order",
-            authRequired: true,
-        }
-    ],
-};
-
 export const chartDetailMinutelyDurationConstants = [
     { name: "3H", value: 45 },
     { name: "6H", value: 90 },
@@ -63,6 +34,16 @@ export const chartDetailDurationConstants = [
 
 export const liveMainTreeMapConstants = [
     {
+        name: "limit",
+        data: [
+            { label: "Top 100 Coins", value: 100 },
+            { label: "Top 200 Coins", value: 200 },
+            { label: "Top 300 Coins", value: 300 },
+            { label: "Top 400 Coins", value: 400 },
+            { label: "Top 500 Coins", value: 500 },
+        ],
+    },
+    {
         name: "group",
         data: [
             { label: "Sectors", value: "sectors" },
@@ -76,7 +57,7 @@ export const liveMainTreeMapConstants = [
         name: "show",
         data: [
             { label: "Market Cap", value: "marketcap" },
-            { label: "Market Cap Dominance", value: "marketcapDominance" },
+            { label: "Dominance", value: "dominance" },
             { label: "Price", value: "price" },
             { label: "Volume", value: "volume" },
             { label: "Top Gainers", value: "topGainers" },
@@ -391,6 +372,11 @@ export const liveMainTreeMapChartOptions = {
             return [ text, value ];
         },
         offsetY: -4,
+    },
+    plotOptions: {
+        treemap: {
+            enableShades: false
+        }
     },
     tooltip: {
         y: {

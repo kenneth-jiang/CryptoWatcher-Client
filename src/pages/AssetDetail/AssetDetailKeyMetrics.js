@@ -67,7 +67,7 @@ export default (props) => {
                 All Time Low
                 <br />
                 <span style={{ fontSize: "smaller" }}>
-                    ({helpers.modifyDate(props.assetData.market_data.atl_date.usd)})
+                    ({helpers.getMonthDayYearFromTimeStamp(props.assetData.market_data.atl_date.usd)})
                 </span>
             </React.Fragment>,
             value: <React.Fragment>
@@ -87,7 +87,7 @@ export default (props) => {
                 All Time High
                 <br />
                 <span style={{ fontSize: "smaller" }}>
-                    ({helpers.modifyDate(props.assetData.market_data.ath_date.usd)})
+                    ({helpers.getMonthDayYearFromTimeStamp(props.assetData.market_data.ath_date.usd)})
                 </span>
             </React.Fragment>,
             value: <React.Fragment>
@@ -104,7 +104,7 @@ export default (props) => {
         },
         {
             name: "Origin Date",
-            value: helpers.modifyDate(props.assetData.genesis_date),
+            value: helpers.getMonthDayYearFromTimeStamp(props.assetData.genesis_date),
         },
         {
             name: "Hashing Algorithm",
