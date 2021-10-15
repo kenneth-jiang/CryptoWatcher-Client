@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
     mode: 'production',
     output: {
-        filename: '[name].[contenthash].js',
+        filename: '[name].js',
         publicPath: './',
     },
     module: {
