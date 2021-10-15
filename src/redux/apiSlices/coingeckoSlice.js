@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as coingeckoApi from '../../api/coingeckoApi';
-import * as coingeckoDummy from '../../dummy/coingecko';
 
 export const getCoingeckoGlobalData = createAsyncThunk(
     "coingecko/getCoingeckoGlobalData",
@@ -21,7 +20,6 @@ export const getCoingeckoTrendingCoins = createAsyncThunk(
 export const getAllCoingeckoCoins = createAsyncThunk(
     "coingecko/getAllCoingeckoCoins",
     async () => {
-        // return coingeckoDummy.coingeckoDummy;
         const pageOneResponse = await coingeckoApi.getAllCoingeckoCoins();
         const pageTwoResponse = await coingeckoApi.getAllCoingeckoCoins(2);
         return [ ...pageOneResponse.data, ...pageTwoResponse.data ];

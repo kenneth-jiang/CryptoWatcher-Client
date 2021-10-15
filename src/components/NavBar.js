@@ -20,11 +20,6 @@ export default (props) => {
                 authRequired: false,
             },
             {
-                name: "Assets",
-                to: "/assets",
-                authRequired: false,
-            },
-            {
                 name: "Chart",
                 to: "/chart",
                 authRequired: false,

@@ -8,7 +8,7 @@ import LiveMainOptions from './LiveMainOptions';
 import LiveMainAutoComplete from './LiveMainAutoComplete';
 import Loading from '../../components/Loading';
 import * as constants from '../../utils/constants';
-import * as coinGeckoApi from '../../api/coingeckoApi';
+import * as coingeckoApi from '../../api/coingeckoApi';
 import * as messariApi from '../../api/messariApi';
 
 export default () => {
@@ -32,7 +32,7 @@ export default () => {
         }
         getMessariAssetList();
         async function getCoinGeckoAssetList() {
-            let coinGeckoAssetListResponse = await coinGeckoApi.getCoingeckoAssetList();
+            let coinGeckoAssetListResponse = await coingeckoApi.getCoingeckoAssetList();
             setAssetData(coinGeckoAssetListResponse.data);
         };
         getCoinGeckoAssetList();

@@ -55,15 +55,16 @@ export default () => {
                 <Switch>
                     <Route exact path="/" component={LandingPageContainer} />
                     <Route exact path="/coins" component={CoinsListPageContainer} />
-                    <Route exact path="/assets" component={AssetListContainer} />
+                    {/* <Route exact path="/assets" component={AssetListContainer} /> */}
                     <Route exact path="/coins/:name" component={AssetDetailContainer} />
                     <Route exact path="/chart" component={ChartMainContainer} />
                     <Route exact path="/chart/:name" component={ChartDetailContainer} />
-                    <Route exact path="/live" component={LiveMainContainer} />
+                    {/* <Route exact path="/live" component={LiveMainContainer} /> */}
+                    <Route exact path="/live" component={() => <Redirect to="/live/bitcoin" />} />
                     <Route exact path="/live/:name" component={LiveDetailContainer} />
                     <Route path="/order" component={authentication.loggedIn ? OrderMainContainer : () => <Redirect to="/" />} />
                     <Route exact path="/404" component={NotFound} />
-                    {/* <Redirect to="/404" /> */}
+                    <Redirect to="/404" />
                 </Switch>
             </Typography>
         </BrowserRouter>

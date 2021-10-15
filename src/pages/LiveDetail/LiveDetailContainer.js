@@ -13,7 +13,7 @@ import LiveDetailOrderBook from './LiveDetailOrderBook';
 import LiveDetailRecentTrades from './LiveDetailRecentTrades';
 import Loading from '../../components/Loading';
 import * as binanceApi from '../../api/binanceApi';
-import * as coinGeckoApi from '../../api/coingeckoApi';
+import * as coingeckoApi from '../../api/coingeckoApi';
 import * as constants from '../../utils/constants';
 import * as helpers from '../../utils/helpers';
 
@@ -32,7 +32,7 @@ export default (props) => {
 
     useEffect(() => {
         async function getCoinGeckoAssetList() {
-            let coinGeckoAssetListResponse = await coinGeckoApi.getCoingeckoAssetList();
+            let coinGeckoAssetListResponse = await coingeckoApi.getCoingeckoAssetList();
             setAssetData(coinGeckoAssetListResponse.data);
             for (let asset of coinGeckoAssetListResponse.data) {
                 if (asset.id === props.match.params.name) {

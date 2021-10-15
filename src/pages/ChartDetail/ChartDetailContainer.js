@@ -10,7 +10,7 @@ import ChartDetailTabGroup from './ChartDetailTabGroup';
 import ChartDetailAutoCompleteIntervalGroup from './ChartDetailAutoCompleteIntervalGroup';
 import ChartDetailIntervalData from './ChartDetailIntervalData';
 import Loading from '../../components/Loading';
-import * as coinGeckoApi from '../../api/coingeckoApi';
+import * as coingeckoApi from '../../api/coingeckoApi';
 import * as binanceApi from '../../api/binanceApi';
 import * as constants from '../../utils/constants';
 import * as helpers from '../../utils/helpers';
@@ -33,7 +33,7 @@ export default (props) => {
 
     useEffect(() => {
         async function getCoinGeckoAssetList() {
-            let coinGeckoAssetListResponse = await coinGeckoApi.getCoingeckoAssetList();
+            let coinGeckoAssetListResponse = await coingeckoApi.getCoingeckoAssetList();
             setAssetData(coinGeckoAssetListResponse.data);
             for (let asset of coinGeckoAssetListResponse.data) {
                 if (asset.id === props.match.params.name) {
@@ -68,7 +68,7 @@ export default (props) => {
             //         marketCap: [{ name: "Market Cap", type: "line", data: coinGeckoMarketCapArray }],
             //         volume: [{ name: "Volume", type: "bar", data: coinGeckoVolumeArray }],
             //     });
-            let coinGeckoHistoricalMarketData = await coinGeckoApi.getCoingeckoAssetHistoricalMarketData(selectedAsset.id, interval);
+            let coinGeckoHistoricalMarketData = await coingeckoApi.getCoingeckoAssetHistoricalMarketData(selectedAsset.id, interval);
             let coinGeckoPriceArray = [];
             coinGeckoHistoricalMarketData.data.prices.map((day) => {
                 coinGeckoPriceArray.push({ x: day[0], y: day[1] });
@@ -124,7 +124,7 @@ export default (props) => {
 
     useEffect(() => {
         async function getSecondCoinGeckoHistoricalMarketData() {
-            let coinGeckoHistoricalMarketData = await coinGeckoApi.getCoingeckoAssetHistoricalMarketData(secondSelectedAsset.id, interval);
+            let coinGeckoHistoricalMarketData = await coingeckoApi.getCoingeckoAssetHistoricalMarketData(secondSelectedAsset.id, interval);
             let coinGeckoPriceArray = [];
             coinGeckoHistoricalMarketData.data.prices.map((day) => {
                 coinGeckoPriceArray.push({ x: day[0], y: day[1] });
