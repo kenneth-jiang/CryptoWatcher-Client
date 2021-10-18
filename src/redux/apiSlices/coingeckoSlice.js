@@ -42,7 +42,6 @@ export const coingeckoSlice = createSlice({
             return { ...state, trendingCoins: action.payload };
         });
         builder.addCase(getAllCoingeckoCoins.fulfilled, (state, action) => {
-            console.log(action.payload)
             return { ...state, allCoins: action.payload };
         });
     }

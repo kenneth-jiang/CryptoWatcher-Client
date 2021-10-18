@@ -12,9 +12,7 @@ module.exports = {
     },
     output: {
         publicPath: 'http://localhost:8080/',
-        sourceMapFilename: "[name].js.map",
     },
-    devtool: "source-map",
     module: {
         rules: [
             {

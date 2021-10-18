@@ -19,12 +19,14 @@ import { getCryptocompareNewsArticles } from './redux/apiSlices/cryptocompareSli
 import { getLunarcrushGlobalData } from './redux/apiSlices/lunarcrushSlice';
 import { getAllMessariCoins } from './redux/apiSlices/messariSlice';
 import { authenticate, login, logout, openModal, closeModal } from './redux/pageSlices/authenticationSlice';
+import request from "./api/request";
 
 export default () => {
     const dispatch = useDispatch();
     const authentication = useSelector((state) => state.authentication);
 
     useEffect(() => {
+        request("/lunarcrush/globaldata");
         dispatch(getCoingeckoGlobalData());
         dispatch(getCoingeckoTrendingCoins());
         dispatch(getAllCoingeckoCoins());
