@@ -54,9 +54,9 @@ export default (props) => {
                     };
                 })}
                 <div style={{ "flexGrow": 1 }} />
-                <Button color="inherit" onClick={props.loggedIn ? props.handleLogout : props.handleModalOpen}>
+                {/* <Button color="inherit" onClick={props.loggedIn ? props.handleLogout : props.handleModalOpen}>
                     {props.loggedIn ? "Logout" : "Login"}
-                </Button>
+                </Button> */}
             </Toolbar>
         </AppBar>
     );

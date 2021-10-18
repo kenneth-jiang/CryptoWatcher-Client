@@ -4,7 +4,7 @@ import crypto from 'crypto';
 export const authenticationSlice = createSlice({
     name: "authentication",
     initialState: {
-        loggedIn: true,
+        loggedIn: false,
         loginError: false,
         displayModal: false,
     },

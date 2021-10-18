@@ -31,7 +31,7 @@ export default () => {
         dispatch(getCryptocompareNewsArticles());
         dispatch(getLunarcrushGlobalData());
         dispatch(getAllMessariCoins());
-        dispatch(authenticate());
+        // dispatch(authenticate());
     }, []);
     
     return (
