@@ -35,7 +35,7 @@ export default (props) => {
             let coinGeckoAssetListResponse = await coingeckoApi.getCoingeckoAssetList();
             setAssetData(coinGeckoAssetListResponse.data);
             for (let asset of coinGeckoAssetListResponse.data) {
-                if (asset.id === props.match.params.name) {
+                if (asset.symbol === props.match.params.name) {
                     setSelectedAsset(asset);
                     break;
                 };
@@ -46,7 +46,6 @@ export default (props) => {
 
     useEffect(() => {
         if (selectedAsset && selectedAsset.symbol) {
-            console.log("does this hit?")
             async function getBinanceOHLCOrderBookRecentTradesData() {
                 let binanceOHLCResponse = await binanceApi.getBinanceOHLC(selectedAsset.symbol, "1m", 50);
                 let formattedOHLC = [];

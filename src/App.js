@@ -61,7 +61,7 @@ export default () => {
                     <Route exact path="/assets/:name" component={AssetDetailContainer} />
                     <Route exact path="/chart" component={ChartMainContainer} />
                     <Route exact path="/chart/:name" component={ChartDetailContainer} /> */}
-                    <Route exact path="/live" component={() => <Redirect to="/live/bitcoin" />} />
+                    <Route exact path="/live" component={() => <Redirect to="/live/btc" />} />
                     <Route exact path="/live/:name" component={LiveDetailContainer} />
                     <Route exact path="/404" component={NotFound} />
                     <Redirect to="/404" />
