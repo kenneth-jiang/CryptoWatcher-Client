@@ -17,6 +17,7 @@ export const coinDetailPageSlice = createSlice({
         viewData: null,
         coinHoldersData: null,
         loading: false,
+        error: false,
     },
     reducers: {
         setCoingeckoAllCoins: (state, action) => {
@@ -231,9 +232,12 @@ export const coinDetailPageSlice = createSlice({
         setLoading: (state, action) => {
             return { ...state, loading: true };
         },
+        setError: (state, action) => {
+            return { ...state, error: action.payload };
+        },
     },
 });
 
-export const { setCoingeckoAllCoins, setBinanceCoinOHLC, setCoingeckoCoinOHLC, setCoingeckoCoinMetadata, setCoingeckoCoinHistoricalData, setMessariCoinMetadata, setSelectedCoin, setSelectedTab, updateSelectedInterval, updateSelectedDuration, updateViewData, formatCoinHoldersData, setLoading } = coinDetailPageSlice.actions;
+export const { setCoingeckoAllCoins, setBinanceCoinOHLC, setCoingeckoCoinOHLC, setCoingeckoCoinMetadata, setCoingeckoCoinHistoricalData, setMessariCoinMetadata, setSelectedCoin, setSelectedTab, updateSelectedInterval, updateSelectedDuration, updateViewData, formatCoinHoldersData, setLoading, setError } = coinDetailPageSlice.actions;
 
 export default coinDetailPageSlice.reducer;

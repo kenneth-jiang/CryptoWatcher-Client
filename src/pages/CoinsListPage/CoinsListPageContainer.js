@@ -7,6 +7,7 @@ import CoinsListPageViewOptions from './components/CoinsListPageViewOptions';
 import CoinsListPageTable from './components/CoinsListPageTable'; 
 import CoinsListPageCards from './components/CoinsListPageCards';
 import { formatAllCoinsData, updateView, updateViewData, updateSortValueAndDirection, updateTablePage, updateCardsPage } from '../../redux/pageSlices/coinsListPageSlice';
+import * as constants from '../../utils/constants';
 
 export default () => {
     const dispatch = useDispatch();
@@ -15,7 +16,9 @@ export default () => {
     
     useEffect(() => {
         if (coingecko.allCoins) {
-            dispatch(formatAllCoinsData(coingecko.allCoins));
+            let updatedCoinList = coingecko.allCoins.filter(coin => constants.binanceCoins.includes(coin.symbol.toUpperCase()));
+            dispatch(formatAllCoinsData(updatedCoinList));
+            // dispatch(formatAllCoinsData(coingecko.allCoins));
             dispatch(updateViewData());
         };
     }, [ coingecko ]);

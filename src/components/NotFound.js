@@ -14,7 +14,7 @@ export default () => {
                 404
             </div>
             <div style={{ textAlign: "center", fontSize: "40px", color: "grey" }}>
-                Oops! The page you were looking for was not found.
+                Oops! The page or coin you were looking for was not found.
                 <br />
                 <br />
                 <Button component={Link} to="/" variant="outlined">

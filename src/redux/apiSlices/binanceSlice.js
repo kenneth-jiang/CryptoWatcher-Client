@@ -15,11 +15,18 @@ export const binanceSlice = createSlice({
         coinOHLC: {},
         coinOrderBook: null,
         coinRecentTrades: null,
+        status: "pending",
     },
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getBinanceCoinOHLC.pending, (state, action) => {
+            return { ...state, status: "pending" };
+        });
         builder.addCase(getBinanceCoinOHLC.fulfilled, (state, action) => {
-            return { ...state, coinOHLC: { ...state.coinOHLC, [action.payload.symbol]: action.payload.data } };
+            return { ...state, status: "fulfilled", coinOHLC: { ...state.coinOHLC, [action.payload.symbol]: action.payload.data } };
+        });
+        builder.addCase(getBinanceCoinOHLC.rejected, (state, action) => {
+            return { ...state, status: "rejected" };
         });
     }
 });

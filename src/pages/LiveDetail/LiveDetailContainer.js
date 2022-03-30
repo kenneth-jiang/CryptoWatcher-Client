@@ -33,7 +33,9 @@ export default (props) => {
     useEffect(() => {
         async function getCoinGeckoAssetList() {
             let coinGeckoAssetListResponse = await coingeckoApi.getCoingeckoAssetList();
-            setAssetData(coinGeckoAssetListResponse.data);
+            let updatedCoinList = coinGeckoAssetListResponse.data.filter(coin => constants.binanceCoins.includes(coin.symbol.toUpperCase()));
+            // setAssetData(coinGeckoAssetListResponse.data);
+            setAssetData(updatedCoinList);
             for (let asset of coinGeckoAssetListResponse.data) {
                 if (asset.symbol === props.match.params.name) {
                     setSelectedAsset(asset);

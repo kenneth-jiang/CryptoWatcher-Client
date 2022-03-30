@@ -9,11 +9,12 @@ import CoinDetailPageMetadata from './Metadata/CoinDetailPageMetadata';
 import CoinDetailPageChart from './Chart/CoinDetailPageChart';
 import CoinDetailPageHolders from './Holders/CoinDetailPageHolders';
 import LiveDetailContainer from '../LiveDetail/LiveDetailContainer';
-import { setCoingeckoAllCoins, setBinanceCoinOHLC, setCoingeckoCoinMetadata, setCoingeckoCoinHistoricalData, setMessariCoinMetadata, setSelectedCoin, setSelectedTab, updateSelectedInterval, updateSelectedDuration, updateViewData, formatCoinHoldersData, setLoading } from '../../redux/pageSlices/coinDetailPageSlice';
+import { setCoingeckoAllCoins, setBinanceCoinOHLC, setCoingeckoCoinMetadata, setCoingeckoCoinHistoricalData, setMessariCoinMetadata, setSelectedCoin, setSelectedTab, updateSelectedInterval, updateSelectedDuration, updateViewData, formatCoinHoldersData, setLoading, setError } from '../../redux/pageSlices/coinDetailPageSlice';
 import { getBinanceCoinOHLC } from '../../redux/apiSlices/binanceSlice';
 import { getCoingeckoCoinMetadata, getCoingeckoCoinHistoricalData } from '../../redux/apiSlices/coingeckoSlice';
 import { getMessariCoinMetadata } from '../../redux/apiSlices/messariSlice';
 import CoinDetailPageRoadmap from './Roadmap/CoinDetailPageRoadmap';
+import * as constants from '../../utils/constants';
 
 export default (props) => {
     const dispatch = useDispatch();
@@ -25,8 +26,23 @@ export default (props) => {
     let history = useHistory();
 
     useEffect(() => {
+        if (binance.status === "rejected") {
+            dispatch(setError(true));
+        };
+    }, [ binance.status ]);
+
+    useEffect(() => {
+        if (binance.status === "rejected" && coinDetailPage.error) {
+            dispatch(setError(false));
+            return history.push("/404");
+        };
+    }, [ coinDetailPage.error ]);
+
+    useEffect(() => {
         if (coingecko.allCoins) {
-            dispatch(setCoingeckoAllCoins(coingecko.allCoins));
+            let updatedCoinList = coingecko.allCoins.filter(coin => constants.binanceCoins.includes(coin.symbol.toUpperCase()));
+            dispatch(setCoingeckoAllCoins(updatedCoinList));
+            // dispatch(setCoingeckoAllCoins(coingecko.allCoins));
         };
     }, [ coingecko.allCoins ]);
 
